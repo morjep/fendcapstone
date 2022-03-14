@@ -1,3 +1,2 @@
-Add server.js
-serve webpage!
+Make js script active on webpage + import another javascript
 Copy skeleton (as template)
