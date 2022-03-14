@@ -1,2 +1,3 @@
 Add server.js
-Render webpage!
+serve webpage!
+Copy skeleton (as template)
