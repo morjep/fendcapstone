@@ -34,3 +34,11 @@ app.get("/", (req, res) => {
   logRequest(req);
   res.sendFile("./dist/index.html");
 });
+
+app.post("/name", (req, res) => {
+  logRequest(req);
+  const json = {
+    message: "Hello, Zelensky",
+  };
+  res.send(JSON.stringify(json));
+});

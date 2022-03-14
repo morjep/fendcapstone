@@ -1,3 +1,11 @@
+import handleSubmit from "./js/formhandler";
+
 import "./styles/styles.scss";
 
-console.log("hello world!");
+const submitButton = document.getElementById("nameSubmit");
+submitButton.addEventListener("click", (event) => {
+  console.log("Button clicked");
+  handleSubmit(event);
+});
+
+export { handleSubmit };

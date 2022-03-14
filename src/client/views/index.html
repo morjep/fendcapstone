@@ -4,7 +4,19 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <h1>Hello there traveler!</h1>
-    <div id="app"></div>
+    <h1>Hello World!</h1>
+    <div id="app">
+      <div id="input">
+        <form>
+          <label for="name">Name:</label><br />
+          <input type="text" id="name" name="name" placeholder="Enter your name here" /><br />
+          <input type="submit" value="Submit" id="nameSubmit" />
+        </form>
+      </div>
+      <div id="output">
+        Server response:
+        <div id="serverresponse"></div>
+      </div>
+    </div>
   </body>
 </html>
