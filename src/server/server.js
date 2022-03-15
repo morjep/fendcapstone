@@ -37,8 +37,9 @@ app.get("/", (req, res) => {
 
 app.post("/name", (req, res) => {
   logRequest(req);
+  console.log(req.body);
   const json = {
-    message: "Hello, Zelensky",
+    message: `Server: Hello, ${req.body.name}`,
   };
   res.send(JSON.stringify(json));
 });
