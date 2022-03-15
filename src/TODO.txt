@@ -2,4 +2,5 @@ Client: Add allcaps.js (to turn string into all caps)
 Client: Send all caps input to server
 Server: Let server return "Hello" + Input received from client
 Try different ways of dealing with exports
+Refactor, cleanup
 Copy skeleton (as template)
