@@ -27,7 +27,9 @@ app.listen(8081, () => {
  * @param req - the request object
  */
 function logRequest(req) {
-  console.log(`${req.method} request on ${req.url}`);
+  const date = new Date();
+  const timestamp = date.toUTCString();
+  console.log(`${timestamp} ::: ${req.method} request on ${req.url}`);
 }
 
 app.get("/", (req, res) => {
@@ -37,9 +39,19 @@ app.get("/", (req, res) => {
 
 app.post("/name", (req, res) => {
   logRequest(req);
-  console.log(req.body);
   const json = {
     message: `Server: Hello, ${req.body.name}`,
+  };
+  res.send(JSON.stringify(json));
+});
+
+app.post("/log", (req, res) => {
+  logRequest(req);
+  const date = new Date();
+  const timestamp = date.toUTCString();
+  console.log(`${timestamp} ::: CLIENT-LOG(${req.body.log})`);
+  const json = {
+    message: "ok",
   };
   res.send(JSON.stringify(json));
 });

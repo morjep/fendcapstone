@@ -1,6 +1,4 @@
-import postData from "./data_util";
-
-const serverUrl = "http://localhost:8081";
+import { postData, serverLog } from "./data_util";
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -12,14 +10,14 @@ function handleSubmit(event) {
     name: formText,
   };
 
-  postData(`${serverUrl}/name`, json).then((res) => {
+  postData("/name", json).then((res) => {
     document.getElementById("serverresponse").innerHTML = res.message;
   });
 }
 
 const submitButton = document.getElementById("nameSubmit");
 submitButton.addEventListener("click", (event) => {
-  console.log("Submit clicked");
+  serverLog("Submit-button clicked");
   handleSubmit(event);
 });
 

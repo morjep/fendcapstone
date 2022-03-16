@@ -1,5 +1,8 @@
+const serverUrl = "http://localhost:8081";
+
 const serverData = async (url = "", options = {}) => {
-  const response = await fetch(url, options);
+  const srvUrl = serverUrl + url;
+  const response = await fetch(srvUrl, options);
 
   try {
     const srvData = await response.json();
@@ -10,7 +13,7 @@ const serverData = async (url = "", options = {}) => {
   }
 };
 
-const postData = async (url = "", data = {}) => {
+export const postData = async (url = "", data = {}) => {
   const options = {
     method: "POST",
     credentials: "same-origin",
@@ -19,8 +22,24 @@ const postData = async (url = "", data = {}) => {
     },
     body: JSON.stringify(data), // body data type must match "Content-Type" header
   };
-  const srvData = serverData(url, options, data);
+  const srvData = serverData(url, options);
   return srvData;
 };
 
-module.exports = postData;
+export const serverLog = async (data = {}) => {
+  const logData = {
+    log: data,
+  };
+  const options = {
+    method: "POST",
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(logData), // body data type must match "Content-Type" header
+  };
+  const srvData = serverData("/log", options);
+  return srvData;
+};
+
+// module.exports = postData;
