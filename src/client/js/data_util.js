@@ -8,7 +8,7 @@ const serverData = async (url = "", options = {}) => {
     const srvData = await response.json();
     return srvData;
   } catch (error) {
-    console.log("error", error);
+    console.error("error", error);
     return false;
   }
 };
