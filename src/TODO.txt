@@ -1,3 +1,0 @@
-Merge to master
-Copy skeleton (as template)
-Try typescript
