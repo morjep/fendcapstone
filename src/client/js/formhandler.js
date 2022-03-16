@@ -17,4 +17,10 @@ function handleSubmit(event) {
   });
 }
 
+const submitButton = document.getElementById("nameSubmit");
+submitButton.addEventListener("click", (event) => {
+  console.log("Submit clicked");
+  handleSubmit(event);
+});
+
 export default handleSubmit;
