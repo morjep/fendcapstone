@@ -51,6 +51,7 @@ function logRequest(req) {
   console.log(`${timestamp} ::: ${req.method} request on ${req.url}`);
 }
 
+/* Serving the index.html file from the dist folder. */
 app.get("/", (req, res) => {
   logRequest(req);
   res.sendFile("./dist/index.html");
@@ -137,8 +138,8 @@ const getCoord = async () => {
 
   console.log(url.href);
   const response = await fetch(url);
-  const coord = await response.json(); // parse JSON
-  return coord;
+  const data = await response.json(); // parse JSON
+  return data;
 };
 
 app.get("/forecast", (req, res) => {
@@ -149,12 +150,15 @@ app.get("/forecast", (req, res) => {
     travelObject.lat = coord.geonames[0].lat;
     travelObject.lon = coord.geonames[0].lng;
     getForecast().then((forecast) => {
-      console.log(forecast);
+      // console.log(forecast);
+      const simpleForecast = forecast.data.map((day) => ({
+        date: day.datetime,
+        high: day.max_temp,
+        low: day.low_temp,
+      }));
+      console.log(simpleForecast);
+      travelObject.forecast = simpleForecast;
+      res.send(JSON.stringify(travelObject.forecast));
     });
-    return true;
   });
-
-  // use city + country to get lat+lng from geonames
-  // use lat+lng to get forecast from weatherbit
-  res.send(JSON.stringify("ok"));
 });
