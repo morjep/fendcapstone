@@ -2,8 +2,22 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const dotenv = require("dotenv");
+const fetch = require("node-fetch");
 
+const travelObject = {
+  geoNamesObject: {},
+  cityName: "None",
+};
+
+/* Creating an express app. */
 const app = express();
+
+/* It loads the .env file into process.env. */
+dotenv.config();
+console.log(`Your Pixabay API key is ${process.env.PIXABAY_API_KEY}`);
+console.log(`Your Weatherbit API key is ${process.env.WEATHERBIT_API_KEY}`);
+console.log(`Your Geonames username is ${process.env.GEONAMES_USERNAME}`);
 
 // Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -54,4 +68,35 @@ app.post("/log", (req, res) => {
     message: "ok",
   };
   res.send(JSON.stringify(json));
+});
+
+const getCoord = async (cityname) => {
+  const url = new URL("http://api.geonames.org/searchJSON");
+
+  url.searchParams.append("q", cityname);
+  url.searchParams.append("maxRows", "10");
+  url.searchParams.append("username", "mortenjep");
+
+  // console.log(url.href);
+  const response = await fetch(url);
+  const coord = await response.json(); // parse JSON
+  return coord;
+};
+
+app.post("/cityname", (req, res) => {
+  logRequest(req);
+  getCoord(req.body.city).then((coord) => {
+    res.send(JSON.stringify(coord));
+    travelObject.geoNamesObject = coord;
+    return true;
+  });
+  travelObject.cityName = req.body.city;
+});
+
+app.get("/cityname", (req, res) => {
+  logRequest(req);
+  const data = {
+    cityName: travelObject.cityName,
+  };
+  res.send(JSON.stringify(data));
 });

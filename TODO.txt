@@ -1,0 +1,4 @@
+Make post requests on citycoord --> geonames
+Make html input to enter city name (check )
+Make get request on cityname --> Update html with traveldestination.
+Move babelrc and check frontend works
