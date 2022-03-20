@@ -7,7 +7,12 @@ const fetch = require("node-fetch");
 
 const travelObject = {
   geoNamesObject: {},
-  cityName: "None",
+  city: "None",
+  country: "None",
+  countryCode: "None",
+  lat: "None",
+  lon: "None",
+  forecast: {},
 };
 
 /* Creating an express app. */
@@ -70,33 +75,86 @@ app.post("/log", (req, res) => {
   res.send(JSON.stringify(json));
 });
 
-const getCoord = async (cityname) => {
+app.post("/city", (req, res) => {
+  logRequest(req);
+  travelObject.city = req.body.city;
+  res.send("ok");
+});
+
+app.get("/city", (req, res) => {
+  logRequest(req);
+  const data = {
+    city: travelObject.city,
+  };
+  res.send(JSON.stringify(data));
+});
+
+const lookup = require("country-code-lookup");
+
+app.get("/countries", (req, res) => {
+  logRequest(req);
+  const { countries } = lookup;
+  const countryNames = countries.map((country) => country.country);
+  res.send(JSON.stringify(countryNames));
+});
+
+app.post("/country", (req, res) => {
+  logRequest(req);
+  travelObject.country = req.body.country;
+  const data = lookup.byCountry(req.body.country);
+  travelObject.countryCode = data.iso2;
+  res.send("ok");
+});
+
+app.get("/country", (req, res) => {
+  logRequest(req);
+  const data = {
+    country: travelObject.country,
+    countryCode: travelObject.countryCode,
+  };
+  res.send(JSON.stringify(data));
+});
+
+const getForecast = async () => {
+  const url = new URL("http://api.weatherbit.io/v2.0/forecast/daily");
+
+  url.searchParams.append("lat", travelObject.lat);
+  url.searchParams.append("lon", travelObject.lon);
+  url.searchParams.append("key", process.env.WEATHERBIT_API_KEY);
+  console.log(url.href);
+  const response = await fetch(url);
+  const data = await response.json(); // parse JSON
+  return data;
+};
+
+const getCoord = async () => {
   const url = new URL("http://api.geonames.org/searchJSON");
 
-  url.searchParams.append("q", cityname);
+  url.searchParams.append("q", travelObject.city);
+  url.searchParams.append("country", travelObject.countryCode);
   url.searchParams.append("maxRows", "10");
-  url.searchParams.append("username", "mortenjep");
+  url.searchParams.append("username", process.env.GEONAMES_USERNAME);
 
-  // console.log(url.href);
+  console.log(url.href);
   const response = await fetch(url);
   const coord = await response.json(); // parse JSON
   return coord;
 };
 
-app.post("/cityname", (req, res) => {
+app.get("/forecast", (req, res) => {
   logRequest(req);
-  getCoord(req.body.city).then((coord) => {
-    res.send(JSON.stringify(coord));
-    travelObject.geoNamesObject = coord;
+  getCoord().then((coord) => {
+    console.log(coord.geonames[0].lat);
+    console.log(coord.geonames[0].lng);
+    travelObject.lat = coord.geonames[0].lat;
+    travelObject.lon = coord.geonames[0].lng;
+    getForecast().then((forecast) => {
+      console.log(forecast);
+    });
     return true;
   });
-  travelObject.cityName = req.body.city;
-});
 
-app.get("/cityname", (req, res) => {
-  logRequest(req);
-  const data = {
-    cityName: travelObject.cityName,
-  };
-  res.send(JSON.stringify(data));
+  // use city + country to get lat+lng from geonames
+  // use lat+lng to get forecast from weatherbit
+  res.send(JSON.stringify("ok"));
 });
