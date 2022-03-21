@@ -13,6 +13,7 @@ const travelObject = {
   lat: "None",
   lon: "None",
   forecast: {},
+  pictureData: {},
 };
 
 /* Creating an express app. */
@@ -116,26 +117,12 @@ app.get("/country", (req, res) => {
   res.send(JSON.stringify(data));
 });
 
-const getForecast = async () => {
-  const url = new URL("http://api.weatherbit.io/v2.0/forecast/daily");
+const getData = async (options) => {
+  const url = new URL(options.url);
 
-  url.searchParams.append("lat", travelObject.lat);
-  url.searchParams.append("lon", travelObject.lon);
-  url.searchParams.append("key", process.env.WEATHERBIT_API_KEY);
-  console.log(url.href);
-  const response = await fetch(url);
-  const data = await response.json(); // parse JSON
-  return data;
-};
-
-const getCoord = async () => {
-  const url = new URL("http://api.geonames.org/searchJSON");
-
-  url.searchParams.append("q", travelObject.city);
-  url.searchParams.append("country", travelObject.countryCode);
-  url.searchParams.append("maxRows", "10");
-  url.searchParams.append("username", process.env.GEONAMES_USERNAME);
-
+  Object.entries(options.options).forEach(([key, value]) => {
+    url.searchParams.append(key, value);
+  });
   console.log(url.href);
   const response = await fetch(url);
   const data = await response.json(); // parse JSON
@@ -144,13 +131,27 @@ const getCoord = async () => {
 
 app.get("/forecast", (req, res) => {
   logRequest(req);
-  getCoord().then((coord) => {
-    console.log(coord.geonames[0].lat);
-    console.log(coord.geonames[0].lng);
+  const optionsGeo = {
+    url: "http://api.geonames.org/searchJSON",
+    options: {
+      q: travelObject.city,
+      country: travelObject.countryCode,
+      maxRows: "10",
+      username: process.env.GEONAMES_USERNAME,
+    },
+  };
+  getData(optionsGeo).then((coord) => {
     travelObject.lat = coord.geonames[0].lat;
     travelObject.lon = coord.geonames[0].lng;
-    getForecast().then((forecast) => {
-      // console.log(forecast);
+    const optionsWeather = {
+      url: "http://api.weatherbit.io/v2.0/forecast/daily",
+      options: {
+        lat: travelObject.lat,
+        lon: travelObject.lon,
+        key: process.env.WEATHERBIT_API_KEY,
+      },
+    };
+    getData(optionsWeather).then((forecast) => {
       const simpleForecast = forecast.data.map((day) => ({
         date: day.datetime,
         high: day.max_temp,
@@ -160,5 +161,27 @@ app.get("/forecast", (req, res) => {
       travelObject.forecast = simpleForecast;
       res.send(JSON.stringify(travelObject.forecast));
     });
+  });
+});
+
+app.get("/picture", (req, res) => {
+  logRequest(req);
+  const options = {
+    url: "https://pixabay.com/api/",
+    options: {
+      q: `${travelObject.city}+${travelObject.country}`,
+      image_type: "photo",
+      key: process.env.PIXABAY_API_KEY,
+    },
+  };
+  getData(options).then((picture) => {
+    const pictureData = {
+      url: picture.hits[0].webformatURL,
+      tag: picture.hits[0].tags,
+      width: picture.hits[0].webformatWidth,
+      heigth: picture.hits[0].webformatHeight,
+    };
+    travelObject.pictureData = pictureData;
+    res.send(JSON.stringify(travelObject.pictureData));
   });
 });
