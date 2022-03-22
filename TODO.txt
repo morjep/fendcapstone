@@ -1,5 +1,4 @@
 
-Move babelrc and check frontend works
 
 Crude html page with input
 

@@ -1,16 +1,26 @@
 <html>
   <head>
-    <title>Empty project</title>
+    <title>Travel Companion</title>
     <meta charset="utf-8" />
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <h1>Travel Companion</h1>
     <div id="app">
       <div id="input">
+        <label for="country-choice">Pick a destination country:</label>
+        <input list="country-list" id="country-choice" name="country-choice" />
+
+        <datalist id="country-list"> </datalist>
+
         <form>
-          <label for="name">Name:</label><br />
-          <input type="text" id="name" name="name" placeholder="Enter your name here" /><br />
-          <input type="submit" value="Submit" id="nameSubmit" />
+          <label for="city">City:</label><br />
+          <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="Enter destination city here"
+          /><br />
+          <input type="submit" value="Submit" id="destSubmit" />
         </form>
       </div>
       <div id="output">

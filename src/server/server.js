@@ -80,7 +80,10 @@ app.post("/log", (req, res) => {
 app.post("/city", (req, res) => {
   logRequest(req);
   travelObject.city = req.body.city;
-  res.send("ok");
+  const json = {
+    message: "ok",
+  };
+  res.send(JSON.stringify(json));
 });
 
 app.get("/city", (req, res) => {

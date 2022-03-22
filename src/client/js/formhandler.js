@@ -4,18 +4,18 @@ function handleSubmit(event) {
   event.preventDefault();
 
   /* Getting the value of the input field with the id of `name` */
-  const formText = document.getElementById("name").value;
+  const formText = document.getElementById("city").value;
 
   const json = {
-    name: formText,
+    city: formText,
   };
 
-  postData("/name", json).then((res) => {
+  postData("/city", json).then((res) => {
     document.getElementById("serverresponse").innerHTML = res.message;
   });
 }
 
-const submitButton = document.getElementById("nameSubmit");
+const submitButton = document.getElementById("destSubmit");
 submitButton.addEventListener("click", (event) => {
   serverLog("Submit-button clicked");
   handleSubmit(event);
