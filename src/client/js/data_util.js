@@ -13,6 +13,18 @@ const serverData = async (url = "", options = {}) => {
   }
 };
 
+export const getData = (url = "") => {
+  const options = {
+    method: "GET",
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const srvData = serverData(url, options);
+  return srvData;
+};
+
 export const postData = async (url = "", data = {}) => {
   const options = {
     method: "POST",
@@ -20,7 +32,7 @@ export const postData = async (url = "", data = {}) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data), // body data type must match "Content-Type" header
+    body: JSON.stringify(data),
   };
   const srvData = serverData(url, options);
   return srvData;
