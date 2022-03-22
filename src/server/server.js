@@ -108,7 +108,10 @@ app.post("/country", (req, res) => {
   travelObject.country = req.body.country;
   const data = lookup.byCountry(req.body.country);
   travelObject.countryCode = data.iso2;
-  res.send("ok");
+  const json = {
+    message: "ok",
+  };
+  res.send(JSON.stringify(json));
 });
 
 app.get("/country", (req, res) => {
