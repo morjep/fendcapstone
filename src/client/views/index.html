@@ -8,7 +8,12 @@
     <div id="app">
       <div id="input">
         <label for="country-choice">Pick a destination country:</label>
-        <input list="country-list" id="country-choice" name="country-choice" />
+        <input
+          list="country-list"
+          id="country-choice"
+          name="country-choice"
+          placeholder="Select country"
+        />
         <datalist id="country-list"> </datalist>
 
         <form>
@@ -23,6 +28,10 @@
         </form>
       </div>
       <div id="output">
+        <div id="forecast">
+          <table id="forecast-table"></table>
+        </div>
+
         Server response:
         <div id="serverresponse"></div>
       </div>

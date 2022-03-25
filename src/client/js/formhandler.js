@@ -1,4 +1,4 @@
-import { postData, serverLog } from "./data_util";
+import { postData } from "./data_util";
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -14,11 +14,5 @@ function handleSubmit(event) {
     document.getElementById("serverresponse").innerHTML = res.message;
   });
 }
-
-const submitButton = document.getElementById("destSubmit");
-submitButton.addEventListener("click", (event) => {
-  serverLog("Submit-button clicked");
-  handleSubmit(event);
-});
 
 export default handleSubmit;

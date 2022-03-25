@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   serverLog("Datalist updated");
 });
 
+// Perhaps move this to index.js and just check for value (and if undefined then raise alert)
 document.getElementById("country-choice").addEventListener("change", () => {
   const country = {
     country: document.getElementById("country-choice").value,

@@ -2,7 +2,12 @@
 
 Crude html page with input
 
+API should return set values on a post!
+
+API should have a health endpoint
+
 "Error" feedback to user
 - City not found
+- Country not set
 - Date to far in the future to show forecast
 - Not able to show picture

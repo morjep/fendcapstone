@@ -1,5 +1,19 @@
 import handleSubmit from "./js/formhandler";
 import updateList from "./js/countryhandler";
+import generateTableHead from "./js/generateforecasttable";
+import { serverLog } from "./js/data_util";
 import "./styles/styles.scss";
 
-export { handleSubmit, updateList };
+const submitButton = document.getElementById("destSubmit");
+submitButton.addEventListener("click", (event) => {
+  serverLog("Updating travel page");
+
+  handleSubmit(event); // New name!
+
+  // Should check if country is null, i.e. raise alert and exit
+  generateTableHead(document.getElementById("forecast-table"));
+
+  // addPicture();
+});
+
+export { handleSubmit, updateList, generateTableHead };
