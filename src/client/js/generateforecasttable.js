@@ -1,4 +1,4 @@
-import { getData, serverLog } from "./data_util";
+import { getData } from "./data_util";
 
 function generateTableHead(table) {
   const thead = table.createTHead();
