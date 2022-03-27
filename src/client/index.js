@@ -3,6 +3,7 @@ import updateList from "./js/countryhandler";
 import generateForecastTable from "./js/generateforecasttable";
 import updateCountdown from "./js/countdown";
 import { serverLog } from "./js/data_util";
+import addPicture from "./js/picture";
 import "./styles/styles.scss";
 
 const submitButton = document.getElementById("destSubmit");
@@ -17,7 +18,7 @@ submitButton.addEventListener("click", (event) => {
 
   updateCountdown();
 
-  // addPicture();
+  addPicture(document.getElementById("picture"));
 });
 
 export { handleSubmit, updateList, generateForecastTable };

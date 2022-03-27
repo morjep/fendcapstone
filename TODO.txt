@@ -2,6 +2,8 @@
 
 Crude html page with input
 
+Traveldate should be posted to the backend
+
 API should return set values on a post!
 
 API should have a health endpoint

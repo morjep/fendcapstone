@@ -7,13 +7,14 @@ const fetch = require("node-fetch");
 
 const travelObject = {
   geoNamesObject: {},
-  city: "None",
-  country: "None",
-  countryCode: "None",
-  lat: "None",
-  lon: "None",
+  city: null,
+  country: null,
+  countryCode: null,
+  lat: null,
+  lon: null,
   forecast: {},
   pictureData: {},
+  travelDate: null,
 };
 
 /* Creating an express app. */
@@ -190,4 +191,11 @@ app.get("/picture", (req, res) => {
     travelObject.pictureData = pictureData;
     res.send(JSON.stringify(travelObject.pictureData));
   });
+});
+
+app.post("/traveldate", (req, res) => {
+  logRequest(req);
+  travelObject.travelDate = req.body.date;
+
+  res.send(JSON.stringify({ travelObject }));
 });
