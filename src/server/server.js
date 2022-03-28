@@ -195,7 +195,7 @@ app.get("/picture", (req, res) => {
 
 app.post("/traveldate", (req, res) => {
   logRequest(req);
-  travelObject.travelDate = req.body.date;
+  travelObject.travelDate = req.body.travelDate;
 
   res.send(JSON.stringify({ travelObject }));
 });

@@ -1,5 +1,3 @@
-import { postData } from "./data_util";
-
 function getNumberOfDays(start, end) {
   const date1 = new Date(start);
   const date2 = new Date(end);
@@ -16,15 +14,11 @@ function getNumberOfDays(start, end) {
   return diffInDays;
 }
 
-function updateCountdown() {
+function addCountdown() {
   const today = new Date();
   const travelDate = document.getElementById("travel-date").value;
   const count = getNumberOfDays(today, travelDate);
   document.getElementById("countdown").innerHTML = `Countdown: ${count}`;
-
-  postData("/traveldate", {
-    date: travelDate,
-  });
 }
 
-export default updateCountdown;
+export default addCountdown;

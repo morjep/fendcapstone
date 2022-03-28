@@ -1,6 +1,6 @@
 import { getData } from "./data_util";
 
-function generateForecastTable(table) {
+function addForecast(table) {
   const thead = table.createTHead();
   const rowHead = thead.insertRow();
 
@@ -25,4 +25,4 @@ function generateForecastTable(table) {
   });
 }
 
-export default generateForecastTable;
+export default addForecast;

@@ -1,7 +1,6 @@
 import handleSubmit from "./js/formhandler";
-import updateList from "./js/countryhandler";
-import generateForecastTable from "./js/generateforecasttable";
-import updateCountdown from "./js/countdown";
+import addForecast from "./js/generateforecasttable";
+import addCountdown from "./js/countdown";
 import { serverLog } from "./js/data_util";
 import addPicture from "./js/picture";
 import "./styles/styles.scss";
@@ -10,15 +9,15 @@ const submitButton = document.getElementById("destSubmit");
 submitButton.addEventListener("click", (event) => {
   serverLog("Updating travel page");
 
-  handleSubmit(event); // New name!
+  handleSubmit(event);
 
-  // Should check if country is null, i.e. raise alert and exit
-  document.getElementById("forecast").innerHTML = '<table id="forecast-table"></table>';
-  generateForecastTable(document.getElementById("forecast-table"));
+  const tableHTML = '<table id="forecast-table"></table>';
+  document.getElementById("forecast").innerHTML = tableHTML;
+  addForecast(document.getElementById("forecast-table"));
 
-  updateCountdown();
+  addCountdown();
 
   addPicture(document.getElementById("picture"));
 });
 
-export { handleSubmit, updateList, generateForecastTable };
+export { handleSubmit, addForecast };

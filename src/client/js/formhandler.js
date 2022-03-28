@@ -1,17 +1,38 @@
-import { postData } from "./data_util";
+import { getData, postData, serverLog } from "./data_util";
+
+function updateCountryList(event) {
+  event.preventDefault();
+
+  getData("/countries").then((countries) => {
+    // Update data list
+    const datalistElem = document.getElementById("country-list");
+    countries.forEach((c) => {
+      const op = document.createElement("option");
+      op.setAttribute("label", c);
+      op.setAttribute("value", c);
+      datalistElem.appendChild(op);
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  updateCountryList(event);
+  serverLog("Datalist updated");
+});
 
 function handleSubmit(event) {
   event.preventDefault();
 
-  /* Getting the value of the input field with the id of `name` */
-  const formText = document.getElementById("city").value;
+  postData("/city", {
+    city: document.getElementById("city").value,
+  });
 
-  const json = {
-    city: formText,
-  };
+  postData("/country", {
+    country: document.getElementById("country-choice").value,
+  });
 
-  postData("/city", json).then((res) => {
-    document.getElementById("serverresponse").innerHTML = res.message;
+  postData("/traveldate", {
+    travelDate: document.getElementById("travel-date").value,
   });
 }
 
