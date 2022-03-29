@@ -1,5 +1,5 @@
 import handleSubmit from "./js/formhandler";
-import addForecast from "./js/generateforecasttable";
+import addForecast from "./js/forecast";
 import addCountdown from "./js/countdown";
 import { serverLog } from "./js/data_util";
 import addPicture from "./js/picture";
@@ -11,13 +11,16 @@ submitButton.addEventListener("click", (event) => {
 
   handleSubmit(event);
 
-  const tableHTML = '<table id="forecast-table"></table>';
-  document.getElementById("forecast").innerHTML = tableHTML;
-  addForecast(document.getElementById("forecast-table"));
+  const newTrip = document.createElement("div");
+  newTrip.className = "trip";
 
-  addCountdown();
+  addForecast(newTrip);
 
-  addPicture(document.getElementById("picture"));
+  addCountdown(newTrip);
+
+  addPicture(newTrip);
+
+  document.getElementById("trips").prepend(newTrip);
 });
 
 export { handleSubmit, addForecast };

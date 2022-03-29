@@ -1,6 +1,9 @@
 import { getData } from "./data_util";
 
-function addForecast(table) {
+function addForecast(element) {
+  const div = document.createElement("div");
+  const table = document.createElement("table");
+  table.className = "forecast";
   const thead = table.createTHead();
   const rowHead = thead.insertRow();
 
@@ -23,6 +26,8 @@ function addForecast(table) {
       });
     });
   });
+  div.append(table);
+  element.appendChild(div);
 }
 
 export default addForecast;
