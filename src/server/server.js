@@ -200,7 +200,7 @@ app.post("/traveldate", (req, res) => {
   res.send(JSON.stringify({ travelObject }));
 });
 
-function getNumberOfDays(start, end) {
+const getNumberOfDays = (start, end) => {
   const date1 = new Date(start);
   const date2 = new Date(end);
 
@@ -214,7 +214,7 @@ function getNumberOfDays(start, end) {
   const diffInDays = Math.round(diffInTime / oneDay);
 
   return diffInDays;
-}
+};
 
 app.get("/countdown", (req, res) => {
   logRequest(req);

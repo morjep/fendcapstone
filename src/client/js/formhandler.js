@@ -1,6 +1,6 @@
 import { getData, postData, serverLog } from "./data_util";
 
-function updateCountryList(event) {
+const updateCountryList = (event) => {
   event.preventDefault();
 
   getData("/countries").then((countries) => {
@@ -13,14 +13,14 @@ function updateCountryList(event) {
       datalistElem.appendChild(op);
     });
   });
-}
+};
 
 document.addEventListener("DOMContentLoaded", (event) => {
   updateCountryList(event);
   serverLog("Datalist updated");
 });
 
-function handleSubmit(event) {
+const handleSubmit = (event) => {
   event.preventDefault();
 
   postData("/city", {
@@ -34,6 +34,6 @@ function handleSubmit(event) {
   postData("/traveldate", {
     travelDate: document.getElementById("travel-date").value,
   });
-}
+};
 
 export default handleSubmit;

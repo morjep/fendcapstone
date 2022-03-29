@@ -6,6 +6,7 @@ import addPicture from "./js/picture";
 import "./styles/styles.scss";
 
 const submitButton = document.getElementById("destSubmit");
+
 submitButton.addEventListener("click", (event) => {
   serverLog("Updating travel page");
 
