@@ -2,6 +2,7 @@ import { getData } from "./data_util";
 
 function addForecast(element) {
   const div = document.createElement("div");
+  div.innerHTML = "<h2> Forecast </h2>";
   const table = document.createElement("table");
   table.className = "forecast";
   const thead = table.createTHead();
