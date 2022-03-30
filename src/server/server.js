@@ -59,40 +59,29 @@ app.get("/", (req, res) => {
   res.sendFile("./dist/index.html");
 });
 
-app.post("/name", (req, res) => {
-  logRequest(req);
-  const json = {
-    message: `Server: Hello, ${req.body.name}`,
-  };
-  res.send(JSON.stringify(json));
-});
-
 app.post("/log", (req, res) => {
   logRequest(req);
   const date = new Date();
   const timestamp = date.toUTCString();
   console.log(`${timestamp} ::: CLIENT-LOG(${req.body.log})`);
-  const json = {
+  const msg = {
     message: "ok",
   };
-  res.send(JSON.stringify(json));
+  res.send(JSON.stringify(msg));
 });
 
 app.post("/city", (req, res) => {
   logRequest(req);
   travelObject.city = req.body.city;
-  const json = {
-    message: "ok",
-  };
-  res.send(JSON.stringify(json));
+  res.send(JSON.stringify({ travelObject }));
 });
 
 app.get("/city", (req, res) => {
   logRequest(req);
-  const data = {
+  const msg = {
     city: travelObject.city,
   };
-  res.send(JSON.stringify(data));
+  res.send(JSON.stringify(msg));
 });
 
 const lookup = require("country-code-lookup");
@@ -100,8 +89,8 @@ const lookup = require("country-code-lookup");
 app.get("/countries", (req, res) => {
   logRequest(req);
   const { countries } = lookup;
-  const countryNames = countries.map((country) => country.country);
-  res.send(JSON.stringify(countryNames));
+  const msg = countries.map((country) => country.country);
+  res.send(JSON.stringify(msg));
 });
 
 app.post("/country", (req, res) => {
@@ -109,19 +98,16 @@ app.post("/country", (req, res) => {
   travelObject.country = req.body.country;
   const data = lookup.byCountry(req.body.country);
   travelObject.countryCode = data.iso2;
-  const json = {
-    message: "ok",
-  };
-  res.send(JSON.stringify(json));
+  res.send(JSON.stringify({ travelObject }));
 });
 
 app.get("/country", (req, res) => {
   logRequest(req);
-  const data = {
+  const msg = {
     country: travelObject.country,
     countryCode: travelObject.countryCode,
   };
-  res.send(JSON.stringify(data));
+  res.send(JSON.stringify(msg));
 });
 
 const getData = async (options) => {
@@ -196,7 +182,6 @@ app.get("/picture", (req, res) => {
 app.post("/traveldate", (req, res) => {
   logRequest(req);
   travelObject.travelDate = req.body.travelDate;
-
   res.send(JSON.stringify({ travelObject }));
 });
 

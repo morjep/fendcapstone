@@ -1,19 +1,7 @@
 
-
-API should return set values on a post!
-
-API should have a health endpoint
-
 Styling
 
 Tests (at least 1 backend, at least 1 frontend)
 
-"Error" feedback to user
-- City not found
-- Country not set
-- Date to far in the future to show forecast
-- Not able to show picture
-
-comments
 
 setup service workers
