@@ -1,0 +1,28 @@
+$pri-color: white;
+$sec-color: #868686;
+$ter-color: blue;
+$pri-bg: #333;
+$pri-bg-hover: rgb(92, 91, 91);
+$sec-bg: white;
+$ter-bg: rgb(234, 222, 222)
+;
+
+body {
+  background-color: $pri-bg;
+}
+
+h1 {
+  color: $pri-color;
+  background-color: $pri-bg;
+  padding-left: 1em;
+}
+
+h2 {
+  color: $pri-color;
+  background-color: $pri-bg;
+  padding-left: 1em;
+}
+
+div.trip {
+  border-top: solid 1px $sec-color ;
+}

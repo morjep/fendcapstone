@@ -9,7 +9,7 @@ const addTripSummary = () => {
 
   getData("/all").then((res) => {
     div.className = "summary";
-    div.innerHTML = `<h2>Destination: ${res.city}, ${res.country} - Traveldate: ${res.travelDate}</h2>`;
+    div.innerHTML = `<h1>Destination: ${res.city}, ${res.country}</h1><h2>Traveldate: ${res.travelDate} </h2>`;
   });
   return div;
 };

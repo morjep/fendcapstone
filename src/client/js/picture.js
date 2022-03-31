@@ -8,7 +8,7 @@ import { getData } from "./data_util";
  */
 const addPicture = () => {
   const div = document.createElement("div");
-
+  div.className = "picture";
   getData("/picture").then((res) => {
     const img = document.createElement("img");
     img.src = res.url;

@@ -1,0 +1,81 @@
+@import "./base.scss";
+
+.userform{
+	font: 95% Arial, Helvetica, sans-serif;
+	max-width: 400px;
+	margin: 10px auto;
+	padding: 16px;
+	background: $ter-bg;
+}
+.userform h1{
+	background: $pri-bg;
+	padding: 20px 0;
+	font-size: 140%;
+	font-weight: 300;
+	text-align: center;
+	color: #fff;
+	margin: -16px -16px 16px -16px;
+}
+.userform input[type="text"],
+.userform input[type="date"],
+.userform input[type="datetime"],
+.userform input[type="list"],
+.userform input[type="number"],
+.userform input[type="datalist"],
+.userform input[type="time"],
+.userform input[type="url"],
+.userform textarea,
+.userform select
+{
+	// -webkit-transition: all 0.30s ease-in-out;
+	// -moz-transition: all 0.30s ease-in-out;
+	// -ms-transition: all 0.30s ease-in-out;
+	// -o-transition: all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+	outline: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	background: $sec-bg;
+	margin-bottom: 4%;
+	border: 1px solid #ccc;
+	padding: 3%;
+	color: #555;
+	font: 95% Arial, Helvetica, sans-serif;
+}
+.userform input[type="text"]:focus,
+.userform input[type="date"]:focus,
+.userform input[type="datetime"]:focus,
+.userform input[type="list"]:focus,
+.userform input[type="number"]:focus,
+.userform input[type="datalist"]:focus,
+.userform input[type="time"]:focus,
+.userform input[type="url"]:focus,
+.userform textarea:focus,
+.userform select:focus
+{
+	box-shadow: 0 0 5px #383838;
+	padding: 3%;
+	border: 1px solid #4a4b4b;
+}
+
+.userform input[type="submit"],
+.userform input[type="button"]{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	padding: 3%;
+	background: $pri-bg;
+	border-bottom: 2px solid $pri-bg;;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;
+	color: #fff;
+    font-size: 80%;
+}
+.userform input[type="submit"]:hover,
+.userform input[type="button"]:hover{
+	background: $pri-bg-hover;
+}

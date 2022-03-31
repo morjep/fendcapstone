@@ -6,10 +6,10 @@ import { getData } from "./data_util";
  */
 const addCountdown = () => {
   const div = document.createElement("div");
+  div.className = "countdown";
 
   getData("/countdown").then((res) => {
-    div.className = "countdown";
-    div.innerHTML = `<h2>Countdown</h2> ${res.timeToTravel}`;
+    div.innerHTML = `<h2>Days to trip: ${res.timeToTravel}</h2>`;
   });
   return div;
 };

@@ -4,7 +4,12 @@ import addCountdown from "./js/countdown";
 import { serverLog } from "./js/data_util";
 import addPicture from "./js/picture";
 import addTripSummary from "./js/tripsummary";
-import "./styles/styles.scss";
+import "./styles/base.scss";
+import "./styles/forecast.scss";
+import "./styles/form.scss";
+import "./styles/summary.scss";
+import "./styles/picture.scss";
+import "./styles/countdown.scss";
 
 const submitButton = document.getElementById("destSubmit");
 
@@ -16,7 +21,7 @@ submitButton.addEventListener("click", (event) => {
   const newTrip = document.createElement("div");
   newTrip.className = "trip";
 
-  newTrip.append(addTripSummary(), addForecast(), addCountdown(), addPicture());
+  newTrip.append(addTripSummary(), addCountdown(), addPicture(), addForecast());
 
   // addForecast(newTrip);
 

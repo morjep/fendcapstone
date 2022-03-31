@@ -6,7 +6,8 @@ import { getData } from "./data_util";
  */
 const addForecast = () => {
   const div = document.createElement("div");
-  div.innerHTML = "<h2> Forecast </h2>";
+  div.className = "forecast";
+  div.innerHTML = "<h1> Current forecast for destination </h1>";
   const table = document.createElement("table");
   table.className = "forecast";
   const thead = table.createTHead();
