@@ -6,7 +6,6 @@ const dotenv = require("dotenv");
 const fetch = require("node-fetch");
 
 const travelObject = {
-  geoNamesObject: {},
   city: null,
   country: null,
   countryCode: null,
@@ -206,4 +205,9 @@ app.get("/countdown", (req, res) => {
   const today = new Date();
   const days = getNumberOfDays(today, travelObject.travelDate);
   res.send(JSON.stringify({ timeToTravel: days }));
+});
+
+app.get("/all", (req, res) => {
+  logRequest(req);
+  res.send(JSON.stringify(travelObject));
 });

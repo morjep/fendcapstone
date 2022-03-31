@@ -4,7 +4,7 @@ import { getData } from "./data_util";
  * It creates a table with the forecast data.
  * @param element - The element to which the forecast will be added.
  */
-const addForecast = (element) => {
+const addForecast = () => {
   const div = document.createElement("div");
   div.innerHTML = "<h2> Forecast </h2>";
   const table = document.createElement("table");
@@ -32,7 +32,7 @@ const addForecast = (element) => {
     });
   });
   div.append(table);
-  element.appendChild(div);
+  return div;
 };
 
 export default addForecast;

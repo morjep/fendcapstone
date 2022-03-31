@@ -8,21 +8,24 @@
     <div id="app">
       <h2>Your next destination</h2>
       <div id="input">
-        <label for="country-choice">Pick a destination country:</label>
-        <input
-          list="country-list"
-          id="country-choice"
-          name="country-choice"
-          placeholder="Select country"
-        />
-        <datalist id="country-list"> </datalist>
-        <form>
+        <form id="userform">
+          <label for="country-choice">Pick a destination country:</label>
+          <input
+            list="country-list"
+            id="country-choice"
+            name="country-choice"
+            placeholder="Select country"
+          />
+          <datalist id="country-list"> </datalist>
+
           <label for="city">Enter your destination city:</label>
           <input type="text" id="city" name="city" placeholder="Enter city" />
+
+          <label for="travel-date"> Travel date:</label>
+          <input type="date" id="travel-date" name="travel-date" />
+
+          <input type="submit" value="Add destination" id="destSubmit" />
         </form>
-        <label for="travel-date"> Travel date:</label>
-        <input type="date" id="travel-date" name="travel-date" />
-        <form><input type="submit" value="Add destination" id="destSubmit" /></form>
       </div>
       <div id="trips"></div>
     </div>

@@ -6,15 +6,16 @@ import { getData } from "./data_util";
  * property set to the `url` property of the JSON object returned by `getData`
  * @param element - The element to add the picture to.
  */
-const addPicture = (element) => {
+const addPicture = () => {
+  const div = document.createElement("div");
+
   getData("/picture").then((res) => {
-    const div = document.createElement("div");
     const img = document.createElement("img");
     img.src = res.url;
     img.tag = res.tag;
     div.appendChild(img);
-    element.appendChild(div);
   });
+  return div;
 };
 
 export default addPicture;

@@ -4,14 +4,14 @@ import { getData } from "./data_util";
  * It gets the countdown data from the server and then creates a div with the data.
  * @param element - The element to which the countdown will be appended.
  */
-const addCountdown = () => {
+const addTripSummary = () => {
   const div = document.createElement("div");
 
-  getData("/countdown").then((res) => {
-    div.className = "countdown";
-    div.innerHTML = `<h2>Countdown</h2> ${res.timeToTravel}`;
+  getData("/all").then((res) => {
+    div.className = "summary";
+    div.innerHTML = `<h2>Destination: ${res.city}, ${res.country} - Traveldate: ${res.travelDate}</h2>`;
   });
   return div;
 };
 
-export default addCountdown;
+export default addTripSummary;
