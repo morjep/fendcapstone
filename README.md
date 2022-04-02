@@ -66,12 +66,6 @@ npm run start
 npm run dev-server
 ```
 
-## Running
-
-```sh
-node dist/bundle.js
-```
-
 ## Testing
 
 To run unit tests:
