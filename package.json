@@ -6,9 +6,9 @@
   "scripts": {
     "clean": "rm dist/bundle.js",
     "start": "node src/server/server.js",
-    "build-dev": "webpack --mode development",
+    "build-dev": "webpack --config webpack.dev.js",
     "build-prod": "webpack --mode production",
-    "dev-server": "webpack-dev-server  --mode development --open",
+    "dev-server": "webpack-dev-server  --config webpack.dev.js --open",
     "test": "jest --detectOpenHandles"
   },
   "jest": {

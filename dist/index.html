@@ -4,35 +4,30 @@
     <meta charset="utf-8" />
   <script defer src="bundle.js"></script></head>
   <body>
-    <h1>Travel Companion</h1>
     <div id="app">
       <div id="input">
-        <label for="country-choice">Pick a destination country:</label>
-        <input list="country-list" id="country-choice" name="country-choice" />
-
-        <datalist id="country-list">
-          <option value="Chocolate"></option>
-          <option value="Coconut"></option>
-          <option value="Mint"></option>
-          <option value="Strawberry"></option>
-          <option value="Vanilla"></option>
-        </datalist>
-
-        <form>
-          <label for="city">City:</label><br />
+        <form class="userform">
+          <h1>Your next destination</h1>
+          <label for="country-choice">Pick a destination country:</label>
           <input
-            type="text"
-            id="city"
-            name="city"
-            placeholder="Enter destination city here"
-          /><br />
-          <input type="submit" value="Submit" id="destSubmit" />
+            type="datalist"
+            list="country-list"
+            id="country-choice"
+            name="country-choice"
+            placeholder="Select country"
+          />
+          <datalist id="country-list"> </datalist>
+
+          <label for="city">Enter your destination city:</label>
+          <input type="text" id="city" name="city" placeholder="Enter city" />
+
+          <label for="travel-date"> Travel date:</label>
+          <input type="date" id="travel-date" name="travel-date" />
+
+          <input type="submit" value="Add destination" id="destSubmit" />
         </form>
       </div>
-      <div id="output">
-        Server response:
-        <div id="serverresponse"></div>
-      </div>
+      <div id="trips"></div>
     </div>
   </body>
 </html>
