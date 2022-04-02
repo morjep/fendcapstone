@@ -5,6 +5,7 @@ dist/*
 node_modules/
 *.log
 .env
+.env_backup
 
 # OS generated files
 .DS_Store
