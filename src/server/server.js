@@ -184,26 +184,12 @@ app.post("/traveldate", (req, res) => {
   res.send(JSON.stringify({ travelObject }));
 });
 
-const getNumberOfDays = (start, end) => {
-  const date1 = new Date(start);
-  const date2 = new Date(end);
-
-  // One day in milliseconds
-  const oneDay = 1000 * 60 * 60 * 24;
-
-  // Calculating the time difference between two dates
-  const diffInTime = date2.getTime() - date1.getTime();
-
-  // Calculating the no. of days between two dates
-  const diffInDays = Math.round(diffInTime / oneDay);
-
-  return diffInDays;
-};
+const util = require("./days_util");
 
 app.get("/countdown", (req, res) => {
   logRequest(req);
   const today = new Date();
-  const days = getNumberOfDays(today, travelObject.travelDate);
+  const days = util.getNumberOfDays(today, travelObject.travelDate);
   res.send(JSON.stringify({ timeToTravel: days }));
 });
 

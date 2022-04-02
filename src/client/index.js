@@ -3,7 +3,7 @@ import addForecast from "./js/forecast";
 import addCountdown from "./js/countdown";
 import { serverLog } from "./js/data_util";
 import addPicture from "./js/picture";
-import addTripSummary from "./js/tripsummary";
+import { addTripSummary } from "./js/tripsummary";
 import "./styles/base.scss";
 import "./styles/forecast.scss";
 import "./styles/form.scss";
@@ -20,15 +20,7 @@ submitButton.addEventListener("click", (event) => {
 
   const newTrip = document.createElement("div");
   newTrip.className = "trip";
-
   newTrip.append(addTripSummary(), addCountdown(), addPicture(), addForecast());
-
-  // addForecast(newTrip);
-
-  // addCountdown(newTrip);
-
-  // addPicture(newTrip);
-
   document.getElementById("trips").prepend(newTrip);
 
   document.getElementById("userform").reset();

@@ -53,5 +53,3 @@ export const serverLog = async (data = {}) => {
   const srvData = serverData("/log", options);
   return srvData;
 };
-
-// module.exports = postData;
