@@ -1,7 +1,2 @@
 
-Styling
-
-Tests (at least 1 backend, at least 1 frontend)
-
-
 setup service workers
