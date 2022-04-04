@@ -16,14 +16,14 @@ const submitButton = document.getElementById("destSubmit");
 submitButton.addEventListener("click", (event) => {
   serverLog("Updating travel page");
 
-  handleSubmit(event);
+  if (handleSubmit(event)) {
+    const newTrip = document.createElement("div");
+    newTrip.className = "trip";
+    newTrip.append(addTripSummary(), addCountdown(), addPicture(), addForecast());
+    document.getElementById("trips").prepend(newTrip);
 
-  const newTrip = document.createElement("div");
-  newTrip.className = "trip";
-  newTrip.append(addTripSummary(), addCountdown(), addPicture(), addForecast());
-  document.getElementById("trips").prepend(newTrip);
-
-  document.getElementById("formToReset").reset();
+    document.getElementById("formToReset").reset();
+  }
 });
 
 export { handleSubmit, addForecast };

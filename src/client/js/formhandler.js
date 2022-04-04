@@ -23,17 +23,37 @@ document.addEventListener("DOMContentLoaded", (event) => {
 const handleSubmit = (event) => {
   event.preventDefault();
 
-  postData("/city", {
-    city: document.getElementById("city").value,
-  });
+  const country = document.getElementById("country-choice").value;
+  const city = document.getElementById("city").value;
+  const travelDate = document.getElementById("travel-date").value;
+
+  if (country === "") {
+    alert("Please select country");
+    return false;
+  }
+
+  if (city === "") {
+    alert("Please enter city");
+    return false;
+  }
+
+  if (travelDate === "") {
+    alert("Please enter date");
+    return false;
+  }
 
   postData("/country", {
-    country: document.getElementById("country-choice").value,
+    country,
+  });
+
+  postData("/city", {
+    city,
   });
 
   postData("/traveldate", {
-    travelDate: document.getElementById("travel-date").value,
+    travelDate,
   });
+  return true;
 };
 
 export default handleSubmit;
