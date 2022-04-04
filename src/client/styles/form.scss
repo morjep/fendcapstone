@@ -18,19 +18,13 @@
 }
 .userform input[type="text"],
 .userform input[type="date"],
-.userform input[type="datetime"],
-.userform input[type="list"],
-.userform input[type="number"],
 .userform input[type="datalist"],
-.userform input[type="time"],
-.userform input[type="url"],
-.userform textarea,
 .userform select
 {
-	// -webkit-transition: all 0.30s ease-in-out;
-	// -moz-transition: all 0.30s ease-in-out;
-	// -ms-transition: all 0.30s ease-in-out;
-	// -o-transition: all 0.30s ease-in-out;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
     transition: all 0.30s ease-in-out;
 	outline: none;
 	box-sizing: border-box;
@@ -46,13 +40,7 @@
 }
 .userform input[type="text"]:focus,
 .userform input[type="date"]:focus,
-.userform input[type="datetime"]:focus,
-.userform input[type="list"]:focus,
-.userform input[type="number"]:focus,
 .userform input[type="datalist"]:focus,
-.userform input[type="time"]:focus,
-.userform input[type="url"]:focus,
-.userform textarea:focus,
 .userform select:focus
 {
 	box-shadow: 0 0 5px #383838;

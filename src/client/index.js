@@ -23,7 +23,7 @@ submitButton.addEventListener("click", (event) => {
   newTrip.append(addTripSummary(), addCountdown(), addPicture(), addForecast());
   document.getElementById("trips").prepend(newTrip);
 
-  document.getElementById("userform").reset();
+  document.getElementById("formToReset").reset();
 });
 
 export { handleSubmit, addForecast };

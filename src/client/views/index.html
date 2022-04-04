@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Travel Companion</title>
@@ -6,7 +7,7 @@
   <body>
     <div id="app">
       <div id="input">
-        <form class="userform">
+        <form class="userform" id="formToReset">
           <h1>Your next destination</h1>
           <label for="country-choice">Pick a destination country:</label>
           <input
@@ -29,5 +30,14 @@
       </div>
       <div id="trips"></div>
     </div>
+    <script>
+      // Check that service workers are supported
+      if ("serviceWorker" in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js");
+        });
+      }
+    </script>
   </body>
 </html>

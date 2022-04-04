@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rm dist/bundle.js",
+    "clean": "rm dist/*",
     "start": "node src/server/server.js",
     "build-dev": "webpack --config webpack.dev.js",
     "build-prod": "webpack --config webpack.prod.js",
@@ -51,7 +51,10 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
     "node-fetch": "^2.6.7",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "terser-webpack-plugin": "^5.3.1",
     "webpack": "^5.71.0",
     "workbox-webpack-plugin": "^6.5.2"
   }
