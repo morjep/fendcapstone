@@ -22,7 +22,9 @@ submitButton.addEventListener("click", (event) => {
     newTrip.append(addTripSummary(), addCountdown(), addPicture(), addForecast());
     document.getElementById("trips").prepend(newTrip);
 
-    document.getElementById("formToReset").reset();
+    setTimeout(() => {
+      document.getElementById("formToReset").reset();
+    }, 200);
   }
 });
 

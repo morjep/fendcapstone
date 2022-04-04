@@ -53,6 +53,7 @@ const handleSubmit = (event) => {
   postData("/traveldate", {
     travelDate,
   });
+
   return true;
 };
 
